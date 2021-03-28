@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './componenets/layout/Navbar'
 import Users from './componenets/users/Users'
 import axios from 'axios'
+import Search from './componenets/users/Search'
 
 class App extends Component {
 
@@ -15,7 +16,9 @@ class App extends Component {
 
     this.setState({loading: true});
 
-    const res = await axios.get('https://api.github.com/users');
+    const res = await axios.get(`https://api.github.com/users?
+      client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
+      &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
     this.setState({ users: res.data, loading: false });
     // console.log(res)
   }
@@ -28,6 +31,7 @@ class App extends Component {
       // In case we dont want div then replace div className="App" with <React.Fragment> or simply angle bracket <> </>
       <div className="App">
         <Navbar/>
+        <Search/>
         <div className='container'>
             <Users loading = { this.state.loading } users = { this.state.users }/>
         </div>
