@@ -27,12 +27,12 @@ const Users = ({ users, loading }) => {
     //     ]
     // }
 
-        if(loading) {
+        if( loading ) {
             return <Spinner />
         } else {
             return (
-                <div style={userStyle}>
-                    {users.map(user => (
+                <div style = { userStyle }>
+                    { users.map( user => (
                         <UserItem key = {user.id}
                             user = {user}
                         />
