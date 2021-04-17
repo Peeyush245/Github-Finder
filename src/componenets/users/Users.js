@@ -1,31 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import UserItem from './UserItem'
 import Spinner from '../layout/Spinner'
-import PropTypes from 'prop-types';
+import GithubContext from '../../context/github/githubContext'
 
-const Users = ({ users, loading }) => {
-    // state = {
-    //     users: [
-    //         {
-    //             id: '1',
-    //             login: 'jojo',
-    //             avatar_url: 'https://avatars0.githubusercontent.com/u/1?v=4',
-    //             html_url: 'https://github.com/mojombo'
-    //         },
-    //         {
-    //             id: '2',
-    //             login: 'mojombo',
-    //             avatar_url: 'https://avatars0.githubusercontent.com/u/1?v=4',
-    //             html_url: 'https://github.com/mojombo'
-    //         },
-    //         {
-    //             id: '3',
-    //             login: 'gogo',
-    //             avatar_url: 'https://avatars0.githubusercontent.com/u/1?v=4',
-    //             html_url: 'https://github.com/mojombo'
-    //         }
-    //     ]
-    // }
+const Users = () => {
+    const githubContext = useContext(GithubContext)
+    const { loading, users } = githubContext
 
         if( loading ) {
             return <Spinner />
@@ -40,11 +20,6 @@ const Users = ({ users, loading }) => {
                 </div>
             )
         }
-}
-
-Users.propTypes = {
-    users: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired
 }
 
 const userStyle = {
